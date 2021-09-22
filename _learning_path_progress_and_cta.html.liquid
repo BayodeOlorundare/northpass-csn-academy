@@ -1,0 +1,41 @@
+{% if learning_path.enrolled? %}
+  <div class="np-top-cta-progress-content">
+    <div class="np-top-cta-progress-title np-text-title">
+      {% t .progress %}
+    </div>
+    <div class="np-progress-bar-container">
+      <div
+        style="width: {{ learning_path.progress }}%"
+        class="np-button-background-color np-card-progress-bar">
+      </div>
+    </div>
+    <div class="np-top-cta-progress-text
+      {% if learning_path.completed? %} np-color-success {% else %} np-button-color {% endif %}
+    ">
+      {% t shared.progress, count: learning_path.progress %}
+    </div>
+  </div>
+{% endif %}
+
+<a
+  class="np-top-button np-button-font-color np-button np-button-big"
+{% if learning_path.enrolled? %}
+  {% if learning_path.current_item.course? %}
+    href="{% route learning_path_course, id: learning_path.current_item.id, learning_path_id: learning_path.id %}"
+  {% elsif learning_path.current_item.training_event? %}
+    href="{% route training_session, id: learning_path.current_item.id %}"
+  {% endif %}
+{% else %}
+    href="{% route learning_path_enrollment, code: learning_path.enrollment_code %}"
+{% endif %}
+>
+  {% if learning_path.enrolled? == false %}
+    {% t shared.enroll %}
+  {% elsif learning_path.started? == false %}
+    {% t shared.learning_path.start %}
+  {% elsif learning_path.completed? %}
+    {% t shared.learning_path.view %}
+  {% else %}
+    {% t shared.continue %}
+  {% endif %}
+</a>

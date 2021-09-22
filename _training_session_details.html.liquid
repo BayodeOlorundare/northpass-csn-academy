@@ -1,0 +1,24 @@
+<div class="np-card-spacing-large">
+  {% include "training_session_date" %}
+
+  <div class="np-training-session-time">
+    <i class="fal fa-clock np-button-color np-training-session-icon"></i>
+    {{ training_session.time_period }} {{ training_session.time_zone }}
+  </div>
+
+  {% if training_session.location %}
+    <div class="np-training-session-location">
+      <i class="fal fa-map-marker-alt np-button-color np-training-session-icon"></i>
+      {{ training_session.location }}
+    </div>
+  {% endif %}
+
+  {% if training_session.session_url %}
+    <div class="np-training-session-location">
+      <i class="fal fa-map-marker-alt np-button-color np-training-session-icon"></i>
+      <a href="{{ training_session.session_url }}" class="np-button-color" target="_blank" >
+        {{ training_session.session_url }}
+      </a>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,9 @@
+<a
+  href="{% route activity_viewer,
+    id: activity.id,
+    course_id: params.course_id,
+    learning_path_id: params.learning_path_id
+  %}" class="{{ class }}"
+>
+  {{ activity.title }}
+</a>

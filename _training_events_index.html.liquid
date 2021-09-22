@@ -1,0 +1,13 @@
+<div class="np-dashboard-resources">
+  {% if training_events.available.any? %}
+    <div class="row row-with-thumbnails">
+      {% for training_event in training_events.available %}
+        <div class="col-xs-12 col-sm-6 col-lg-4 np-stretch-content">
+          {% include "cards_training_event" with training_event %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% include "training_events_zero_state" %}
+  {% endif %}
+</div>

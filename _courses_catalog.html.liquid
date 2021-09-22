@@ -1,0 +1,23 @@
+{% if courses.in_catalog.any? %}
+  <div id="courses" class="np-catalog-courses row row-with-thumbnails">
+    {% for course in courses.in_catalog %}
+      <div id='{{course.created_at | date: "%s" }}' class="sortable col-xs-12 col-md-6 col-lg-4 np-stretch-content">
+        {% include "cards_course" with course %}
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  {% capture message %}
+    {% t shared.zero_state.courses.catalog,
+      key: current_school.course_vocabulary
+    %}
+  {% endcapture %}
+  {% include "courses_zero_state", message: message %}
+{% endif %}
+
+<script>
+  const main = document.querySelector('#courses');
+  const divs = [...main.children];
+  divs.sort((a, b) => a.id - b.id);
+  divs.forEach(div => main.appendChild(div));
+</script>

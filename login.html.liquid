@@ -1,0 +1,56 @@
+<main class="np-main np-box-container">
+  <div class="np-box">
+    {% include "header_minimal" %}
+    <div class="np-box-content-container">
+      <form class="np-form np-box-content" action="{% route login %}" method="post" novalidate>
+        {% form_authenticity_token %}
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_email">
+            {% t shared.email_address %}
+          </label>
+          <input
+            class="np-input"
+            autofocus="autofocus"
+            type="email"
+            name="learner[email]"
+            id="learner_email"
+          >
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_password">
+            {% t shared.password %}
+          </label>
+          <input
+            class="np-input"
+            type="password"
+            name="learner[password]"
+            id="learner_password"
+          >
+        </div>
+        <button type="submit" class="np-button np-button-big np-button-large-font np-form-action">
+          {% t shared.sign_in %}
+        </button>
+        <div class="sign-bottom">
+        <a class="np-form-link np-button-color" href="{% route forgot_password_new %}">
+          {% t .forgot_password %}
+        </a>
+        </div>
+        {% if features.account_creation? %}
+          <a class="np-form-link np-button-color" href="{% route sign_up %}">
+            Create an account
+            <!--{% t shared.sign_up %}-->
+          </a>
+        {% endif %}
+        {% if features.request_access? %}
+          <a
+            class="np-form-link np-button-color"
+            target="_blank"
+            href="{{ current_school.request_access_link }}"
+          >
+            {{ current_school.request_access_label }}
+          </a>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</main>

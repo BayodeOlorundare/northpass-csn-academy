@@ -1,0 +1,13 @@
+<nav class="np-sub-navigation">
+  <div class="np-sub-navigation-content">
+    {% for link in navigations.sub_navigation %}
+      <div class="np-sub-navigation-content-item {{ link.active_class }}">
+        <a class="np-sub-navigation-content-item-link" href="{{ link.url }}">
+          <i class="{{ link.icon }} np-button-color np-sub-navigation-content-item-icon"></i>
+          {{ link.label }}
+        </a>
+        <div class="np-sub-navigation-content-item-bar np-button-background-color"></div>
+      </div>
+    {% endfor %}
+  </div>
+</nav>

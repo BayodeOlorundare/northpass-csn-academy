@@ -1,0 +1,33 @@
+<div class="np-filter">
+  <div class="dropdown">
+    <button
+      class="np-button dropdown-button"
+      data-toggle-class="is-open"
+      data-toggle-escape
+      data-toggle-outside
+      data-toggle-target-next
+      type="button"
+    >
+      {% t shared.filters.filter %}
+    </button>
+
+    <div class="dropdown-menu" data-test="modal">
+      <form method="get">
+        {%
+          include "filter_select",
+          filters: filters,
+          key: key,
+          label: label
+        %}
+
+        <button
+          class="np-button dropdown-button-apply"
+          data-toggle-trigger-off
+          type="submit"
+        >
+          {% t shared.filters.apply %}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

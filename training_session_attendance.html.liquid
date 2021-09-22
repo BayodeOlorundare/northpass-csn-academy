@@ -1,0 +1,43 @@
+{% include "header" %}
+<main class="np-main np-training-session-attendance np-max-width np-subpage-container">
+  <div class="np-card-container np-card-padding-xlarge">
+    {% if token %}
+      <i class="np-training-session-attendance-icon fal fa-users-class"></i>
+      <div class="np-form-headline">
+        {{ training_session.title }}
+      </div>
+      <div class="np-form-subheadline">
+        {% t .info,
+          event_name: training_session.title,
+          session_date: training_session.date,
+          session_time: training_session.time
+        %}
+      </div>
+      <div class="np-form-subheadline">
+        {% t .question %}
+      </div>
+      <form action="{% route training_session_attendance %}" method="post" class="np-training-session-attendance-buttons">
+        {% form_authenticity_token %}
+        <input type="hidden" name="token" value="{{ token }}">
+        <input type="submit" name="not_attended" value="{% t .not_attended %}" class="np-button np-button-secondary">
+        <input type="submit" name="commit" value="{% t .attended %}" class="np-button">
+      </form>
+      <div class="np-form-subheadline">
+        {% t .salutation %}
+      </div>
+      <div class="np-form-subheadline">
+        {{ current_school.name }}
+      </div>
+    {% else %}
+      <i class="np-training-session-attendance-icon fal fa-check-circle"></i>
+      <div class="np-form-headline">
+        {% t .success.response_text %}
+      </div>
+      <div class="np-training-session-attendance-buttons">
+        <a href="{% route training_events %}" class="np-button">
+          {% t .success.button_text %}
+        </a>
+    {% endif %}
+  </div>
+</main>
+{% include "footer" %}

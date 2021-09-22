@@ -1,0 +1,40 @@
+<div class="np-resource-header np-resource-header-card np-card-padding-large">
+  {% include "training_session_header" %}
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-7">
+    <div class="np-card-container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-5">
+          {% include "training_session_details" %}
+        </div>
+        <div class="col-xs-12 col-sm-7">
+          {% include "training_session_cta" %}
+        </div>
+      </div>
+      <div class="np-card-padding-large">
+        <div class="np-card-content-divider">
+          {% include "training_session_description" %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-5 np-grid-spacing">
+    <div class="np-training-session-sessions-title">
+      {% t shared.more_sessions %}
+    </div>
+    {% if training_event.sessions.size > 1 %}
+      {% include "training_session_more_sessions" %}
+    {% else %}
+      <div class="np-training-session-zero-state">
+        <img
+          alt="{% t .empty %}"
+          class="np-zero-state-training-sessions"
+        />
+        <div class="np-training-session-zero-state-text">
+          {% t .empty %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

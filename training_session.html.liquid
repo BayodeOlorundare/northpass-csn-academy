@@ -1,0 +1,10 @@
+{% include "header" %}
+<main class="np-main np-training-session np-max-width np-page-container">
+  <div class="np-hidden-mobile" id="training-session-desktop">
+    {% include "training_session_desktop_view" %}
+  </div>
+  <div class="np-hidden-desktop" id="training-session-mobile">
+    {% include "training_session_mobile_view" %}
+  </div>
+</main>
+{% include "footer" %}

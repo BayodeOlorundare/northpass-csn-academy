@@ -1,0 +1,27 @@
+{% include "header" %}
+<main class="np-main np-search np-subpage-container np-max-width">
+  <div class="np-resource-title">
+    {% t .title %}
+  </div>
+  <div class="np-search-header">
+    <div class="np-resource-subtitle">
+      {% t .showing %}
+      <span class="np-resource-subtitle-number">{{ results.count }}</span>
+      {% t .results_for %}
+      <span class="np-button-color">"{{ results.term }}"</span>
+    </div>
+    {% capture label %}{% t shared.filters.by_type %}{% endcapture %}
+    {%
+      include "filter_dropdown",
+      filters: results.filters,
+      key: "type",
+      label: label
+    %}
+  </div>
+  {% if results.items.any? %}
+    {% render "search_result" for results.items as result %}
+  {% else %}
+    {% include "search_zero_state" %}
+  {% endif %}
+</main>
+{% include "footer" %}

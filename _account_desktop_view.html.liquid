@@ -1,0 +1,19 @@
+<form class="np-form" action="{{ form.options.action }}" method="post" id="desktop_edit_learner" novalidate>
+  <input type="hidden" name="_method" value="{{ form.options.http_method }}">
+  {% form_authenticity_token %}
+  <div class="np-card">
+    <div class="np-card-container np-card-padding">
+      <div class="row">
+        <div class="col-sm-7 np-account-form">
+          {% render "account_form", form: form, version: "desktop" %}
+          <button onclick="sendData()" type="submit" class="np-button np-button-big np-button-large-font np-form-action">
+            {% t shared.account.save %}
+          </button>
+        </div>
+        <div class="col-sm-5 np-account-avatar">
+          {% include "account_avatar", version: "desktop" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,10 @@
+<h3 class="np-card-heading">
+  {% t .header %}
+</h3>
+<div class="np-flex">
+  {% for category in course.categories %}
+    <div class="np-content-categories-content-item">
+      {{ category.name }}
+    </div>
+  {% endfor %}
+</div>

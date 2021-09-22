@@ -1,0 +1,10 @@
+<div class="np-top-vocabulary np-text-title">
+  {% t shared.event_types, key: training_event.event_type %}
+  <i class="fal fa-users-class np-button-color np-training-session-icon"></i>
+</div>
+<div class="np-top-title">
+  <a href="{% route home %}" class="np-back-button" aria-label="{% t shared.go_back %}">
+    <i class="far fa-arrow-left np-hidden-mobile np-icon-back"></i>
+  </a>
+  {{ training_event.title }}
+</div>

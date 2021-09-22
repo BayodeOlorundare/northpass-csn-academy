@@ -1,0 +1,70 @@
+<div class="np-card np-no-horizontal-padding">
+  <div class="np-card-container">
+    <div class="np-learning-path">
+      <img
+        alt="{{ learning_path.name }}"
+        class="np-card-image np-learning-path-image"
+        src="{{ learning_path.image_url }}"
+      />
+      <div class="np-card-text-wrapper">
+        <div class="np-hidden-desktop np-card-header">
+          <i class="np-card-header-icon far fa-road"></i>
+          <div class="np-card-header-type">{% t shared.learning_path.title %}</div>
+          <div class="np-hidden-desktop  np-card-header-items-count">
+            {{ learning_path.items.count }} {% t .items %}
+          </div>
+        </div>
+        <div class="np-hidden-mobile np-card-header">
+          <div class="np-card-header-type">{% t shared.learning_path.title %}</div>
+          <i class="np-card-header-icon far fa-road"></i>
+        </div>
+
+        <div class="np-card-content np-card-padding np-card-content-vertical">
+          <h3 class="np-card-content-title">
+            {{ learning_path.name }}
+          </h3>
+
+          <div class="np-card-content-subtitle">
+            {{ learning_path.instructor_names }}
+          </div>
+
+          <div class="np-hidden-mobile np-card-content-description">
+            {{ learning_path.description }}
+          </div>
+
+          <div class="np-hidden-mobile np-card-content-progress
+          np-button-color">
+            {% t shared.progress, count: learning_path.progress %}
+          </div>
+
+          <div class="np-hidden-mobile np-card-progress-bar-container">
+            <div
+              style="width: {{ learning_path.progress }}%"
+              class="np-button-background-color np-card-progress-bar">
+            </div>
+          </div>
+
+          <div class="np-card-content-footer">
+            <div class="np-hidden-desktop np-card-content-progress
+            np-button-color">
+              {% t shared.progress, count: learning_path.progress %}
+            </div>
+            <a class="np-button" href="{% route learning_path, id: learning_path.id %}">
+              {% t shared.view %}
+            </a>
+            <span class="np-hidden-mobile np-learning-path-items">
+              <i class="np-button-color np-learning-path-items-icon far fa-graduation-cap"></i>
+              <span class="np-learning-path-items-count">
+                {{ learning_path.items.count }} {% t .items %}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="np-card-stack">
+    <div class="np-card-stack-level-1"></div>
+    <div class="np-card-stack-level-2"></div>
+  </div>
+</div>

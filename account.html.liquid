@@ -1,0 +1,14 @@
+{% include "header" %}
+
+<main class="np-main np-subpage-container np-account">
+  <div class="np-hidden-desktop">
+    {% include "account_mobile_view", form: form %}
+  </div>
+
+  <div class="np-hidden-mobile np-flex np-flex-center">
+    {% include "account_desktop_view", form: form %}
+  </div>
+</main>
+
+{% include "footer" %}
+

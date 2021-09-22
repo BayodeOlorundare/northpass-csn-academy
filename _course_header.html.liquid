@@ -1,0 +1,16 @@
+<div class="np-top-vocabulary np-text-title np-text-muted">
+  {{ current_school.course_vocabulary }}
+  <i class="far fa-graduation-cap np-button-color np-learning-path-icon np-hidden-mobile">
+  </i>
+</div>
+<div class="np-top-title">
+  <a href="{% route home %}" class="np-back-button" aria-label="{% t shared.go_back %}">
+    <i class="far fa-arrow-left np-hidden-mobile np-icon-back"></i>
+  </a>
+  {{ course.name }}
+</div>
+<img
+  src="{{ course.image_url }}"
+  class="np-top-image np-hidden-desktop"
+  alt="{{ course.name }}"
+/>

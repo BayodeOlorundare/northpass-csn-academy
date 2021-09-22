@@ -1,0 +1,66 @@
+<div class="np-hidden-mobile">
+  <p>{% t .description %}</p>
+  <p>{% t .requirements %}</p>
+</div>
+
+<img
+  alt=""
+  class="np-account-avatar-image"
+  src="{{ form.gravatar_url }}?s=200"
+  id="{{version}}_gravatar_img"
+  {% unless form.use_gravatar? %}style="display: none"{% endunless %}
+/>
+<img
+  alt=""
+  class="np-account-avatar-image"
+  src="{{ form.secure_custom_avatar_url }}"
+  id="{{version}}_custom_avatar_img"
+  {% if form.use_gravatar? %}style="display: none"{% endif %}
+/>
+
+<div class="np-account-avatar-choice">
+  <div class="np-form-field">
+    <label class="radio radio-before np-input-label" for="{{version}}_learner_use_gravatar_true">
+      <span class="radio__input">
+        <input
+          id="{{version}}_learner_use_gravatar_true"
+          name="learner[use_gravatar]"
+          type="radio"
+          value="true"
+          {% if form.use_gravatar? %}checked{% endif %}
+        />
+        <span class="np-button-color radio__control"></span>
+      </span>
+      <span class="radio__label">
+        {% t .use_gravatar %}
+      </span>
+    </label>
+  </div>
+
+  <div class="np-form-field">
+    <label class="radio radio-before np-input-label" for="{{version}}_learner_use_gravatar_false">
+      <span class="radio__input">
+        <input
+          id="{{version}}_learner_use_gravatar_false"
+          name="learner[use_gravatar]"
+          type="radio"
+          value="false"
+          {% unless form.use_gravatar? %}checked{% endunless %}
+        />
+        <span class="np-button-color radio__control"></span>
+      </span>
+      <span class="radio__label">
+        {% t .upload_custom_photo %}
+      </span>
+    </label>
+  </div>
+  <div>
+    <button
+      id="{{version}}_upload_avatar"
+      type="button"
+      class="np-button np-button-secondary" {% if form.use_gravatar? %}style="visibility: hidden"{% endif %}
+    >
+      {% t .upload %}
+    </button>
+  </div>
+</div>

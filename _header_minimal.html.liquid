@@ -1,0 +1,17 @@
+<header class="np-box-header np-header-color">
+  <a class="np-box-header-link" href="{% route home %}">
+    {% if current_school.logo_url %}
+      <img
+        alt="{{ current_school.name }}"
+        src="{{ current_school.logo_url }}"
+        class="np-box-header-logo"
+      />
+    {% else %}
+      <span class="np-school-name np-header-font-color">
+        {{ current_school.name }}
+      </span>
+    {% endif %}
+  </a>
+</header>
+
+{% include "messages" %}

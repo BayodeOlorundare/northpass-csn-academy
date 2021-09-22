@@ -1,0 +1,46 @@
+<div class="np-top-cta-progress-content">
+  <div class="np-top-cta-progress-title np-text-title">
+    {% t .header %}
+  </div>
+  <div class="np-progress-bar-container">
+    <div
+      style="width: {{ course.progress }}%"
+      class="np-button-background-color np-card-progress-bar">
+    </div>
+  </div>
+
+  <div class="np-top-cta-progress-text
+    {% if course.completed? %} np-color-success {% else %} np-button-color {% endif %}
+  ">
+    {% t shared.progress, count: course.progress %}
+  </div>
+</div>
+
+{% if course.learner_can_retake? %}
+  <form action="{% route course_retake, id: course.id %}" method="POST">
+    {% form_authenticity_token %}
+    <button type="submit" class="np-top-button np-button-font-color np-button np-button-big">
+      {% t .retake, key: current_school.course_vocabulary %}
+    </button>
+  </form>
+{% else %}
+  <a
+    class="np-top-button np-button-font-color np-button np-button-big"
+  {% if course.enrolled? %}
+      href="{% route course_viewer, course_id: course.id, learning_path_id: params.learning_path_id %}"
+  {% else %}
+      href="{% route course_enrollment, code: course.enrollment_code %}"
+  {% endif %}
+  >
+    {% if course.enrolled? == false %}
+      {% t shared.enroll %}
+    {% elsif course.started? == false %}
+      {% t shared.course.start, key: current_school.course_vocabulary %}
+    {% elsif course.completed? %}
+      {% t shared.course.view, key: current_school.course_vocabulary %}
+    {% else %}
+      {% t shared.continue %}
+    {% endif %}
+  </a>
+{% endif %}
+

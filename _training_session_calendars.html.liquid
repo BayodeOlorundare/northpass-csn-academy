@@ -1,0 +1,52 @@
+<div class="dropdown dropdown-calendar">
+  <button
+    class="np-top-button np-button-font-color np-button np-button-big dropdown-calendar-button"
+    data-toggle-class="is-open"
+    data-toggle-escape
+    data-toggle-outside
+    data-toggle-target-next
+    type="button"
+  >
+    {% t .add_to_calendar %}
+    <i class="fas fa-chevron-down dropdown-calendar-button-chevron"></i>
+  </button>
+
+  <ul class="dropdown-calendar-menu">
+    <li class="dropdown-calendar-item">
+      <a
+        class="dropdown-calendar-item-element np-button-background-color-on-hover np-button-font-color-on-hover"
+        href="{{ training_session.google_calendar_url }}"
+        target="_blank"
+      >
+          {% t .google_calendar %}
+      </a>
+    </li>
+    <li class="dropdown-calendar-item">
+      <a
+        class="dropdown-calendar-item-element np-button-background-color-on-hover np-button-font-color-on-hover"
+        href="{{ training_session.outlook_calendar_url }}"
+        target="_blank"
+      >
+          {% t .outlook_calendar %}
+      </a>
+    </li>
+    <li class="dropdown-calendar-item">
+      <a
+        class="dropdown-calendar-item-element np-button-background-color-on-hover np-button-font-color-on-hover"
+        href="{{ training_session.outlook_office_calendar_url }}"
+        target="_blank"
+      >
+          {% t .office_calendar %}
+      </a>
+    </li>
+    <li class="dropdown-calendar-item">
+      <a
+        class="dropdown-calendar-item-element np-button-background-color-on-hover np-button-font-color-on-hover"
+        href="{{ training_session.ical_calendar_url }}"
+        target="_blank"
+      >
+          {% t .ical_calendar %}
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,42 @@
+<div class="np-card-container np-card-padding-large">
+  {% include "course_header" %}
+  <div class="np-top-cta">
+    {% include "course_progress_and_cta" %}
+  </div>
+</div>
+
+{% if current_person.signed_in? %}
+  {% if course.progress == 0 %}
+    <div class="np-card-container np-card-padding np-card-spacing">
+      {% include "course_description" %}
+    </div>
+    <div class="np-card-container np-card-padding np-card-spacing">
+      {% include "course_outline" %}
+    </div>
+  {% else %}
+    <div class="np-card-container np-card-padding np-card-spacing">
+      {% include "course_outline" %}
+    </div>
+    <div class="np-card-container np-card-padding np-card-spacing">
+      {% include "course_description" %}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% if course.categories.any? %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "course_categories" %}
+  </div>
+{% endif %}
+
+{% if course.instructors.any? %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "course_instructors" %}
+  </div>
+{% endif %}
+
+{% if course.events.any? %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "course_events" %}
+  </div>
+{% endif %}

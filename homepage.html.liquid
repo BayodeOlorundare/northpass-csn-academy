@@ -1,0 +1,483 @@
+<header class="np-header np-header-color">
+  <div class="np-header-content-home">    
+    <!--School Logo -->
+      <h1 class="np-header-logo">
+        <a href="{% route home %}">
+          <img
+            alt="{{ current_school.name }}"
+            class="np-header-logo-image"
+            src="https://assets1.csnews.com/files/2021-07/CSNTechAvademyLogo_Full_Wtag_v4.png"
+            loading="eager"
+          />
+        </a>
+      </h1>   
+    <!--School Logo -->
+  </div>
+  <!-- Nav -->
+  <div class="np-header-menu-content-nav">
+    {% if current_person.signed_in? %}
+    <a href="https://academy.csnews.com/app"><p class="header-nav-item">Home</p></a>
+    <a href="https://academy.csnews.com/app/catalog"><p class="header-nav-item">Course Catalog</p></a>
+    <a href="{% route logout %}"><p class="header-nav-item">Log Out</p></a>
+    {% else %}
+    <a href="https://academy.csnews.com/app"><p class="header-nav-item">Home</p></a>
+    <a href="https://academy.csnews.com/app/catalog"><p class="header-nav-item">Courses</p></a>
+    <a href="{% route login %}"><p class="header-nav-item">Log in</p></a>
+    {% endif %} 
+  </div>
+  <!-- Nav --> 
+  <!--Nav Button-->
+    <div class="np-hidden-mobile np-header-search np-header-search-expanded">
+      {% if current_person.signed_in? %}
+        <button
+          data-toggle-class="np-hidden"
+          class="np-header-mobile-menu-nav-button fal fa-times np-hidden np-header-font-color"
+          data-toggle-target=".np-header-mobile-avatar-menu,
+          .np-header-mobile-menu-content, .np-main, .np-footer"
+        ><div></div>
+          <div></div>
+          <div></div></button>
+        <p
+          data-test="open-mobile-menu"
+          data-toggle-class="np-hidden"
+          class="np-header-mobile-menu-nav-button np-header-mobile-avatar-menu"
+          data-toggle-target=".fa-times, .np-header-mobile-menu-content, .np-main, .np-footer"
+        ><div></div>
+          <div></div>
+          <div></div>
+          <!--<img
+            alt="{{ current_person.name }}"
+            class="np-header-avatar-image fade"
+            src="{{ current_person.avatar_url }}"
+            loading="lazy"
+          />-->
+          </p>
+      {% endif %}
+    </div>
+    <!--Nav Button-->
+  <!--Mobile Nav-->
+  <div class="np-header-desktop-nav">
+    <div class="np-header-mobile-menu-content np-hidden">
+      {% if current_person.signed_in? %}
+        <img
+          alt="{{ current_person.name }}"
+          class="np-header-mobile-menu-content-avatar fade"
+          src="{{ current_person.avatar_url }}"
+          loading="lazy"
+        />
+        <div class="np-header-mobile-menu-content-name">
+          {{ current_person.name }}
+        </div>
+      {% endif %}
+      <div class="np-header-mobile-menu-content-nav">
+        <form
+          class="np-header-search"
+          data-test="mobile-search"
+          method="get"
+          action="{% route search %}"
+        >
+          <input
+            aria-label="{% t .search %}"
+            class="np-header-search-input"
+            type="text"
+            name="q"
+            placeholder="Search"
+          />
+          <i class="np-header-search-icon far fa-search"></i>
+        </form>
+        {% for website_navigation in navigations.header_navigations %}
+          <a
+            href="{{ website_navigation.path }}"
+            class="np-header-mobile-menu-content-button"
+            {% if website_navigation.external? %} target="_blank" {% endif %}
+          >
+            {{ website_navigation.name }}
+          </a>
+        {% endfor %}
+        <div class="np-header-mobile-menu-content-line"></div>
+        {% unless current_school.sso_active? %}
+          <a
+            class="np-header-mobile-menu-content-button"
+            href="{% route account %}"
+          >
+            Profile Settings
+          </a>
+        {% endunless %}
+        <a
+          class="np-header-mobile-menu-content-button np-danger"
+          href="{% route logout %}"
+        >
+          Sign Out
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--Mobile Nav-->
+</header>
+{% include "messages" %}
+<div class="header-hero-img">
+  <table style="display: none;" class="header-text-table hero-fade" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <td align="left" valign="top">
+          <img class="hero-logo" src="https://assets1.csnews.com/files/2021-07/CSNTechAcadLogo_2021_C_0.png"  alt="CSNews Academy" loading="eager">
+                     
+        </td>        
+        <td align="left" valign="top">  
+          <h1 class="header-hero-txt-left">Online Education<br />
+              For Convenience Store<br />
+              Business Leaders<br />
+              & IT Professionals
+              </h1>                
+        <div class="learning-tabs">   
+            <button
+                type="button"
+                class="course-btn-select">
+                Store Systems
+            </button>
+            <button
+                type="button"
+                class="course-btn-select">
+                Analytics
+            </button>
+            <button
+                type="button"
+                class="course-btn-select">
+                Digital Commerce
+            </button>
+            <button
+                type="button"
+                class="course-btn-select">
+                Supply Chain/Merchandising
+            </button>
+            <button
+                type="button"
+                class="course-btn-select">
+                Customer Engagement
+            </button>
+        </div> 
+          {% if current_person.signed_in? %}
+              <a href="https://academy.csnews.com/app/catalog"><button class="course-btn-select is-active join-course-btn">Courses</button></a>
+              {% else %}
+              <a href="https://academy.csnews.com/sign_up"><button class="course-btn-select is-active join-course-btn">Join Now</button></a>
+              {% endif %}        
+            <!--<h2 style="color:#ffffff;">Learning Paths</h2>
+            <nav class="paths-list" id="example-one">
+              <a href="#">Store Systems</a>
+              <a href="#">Analytics</a>
+              <a href="#">Digital Commerce</a>
+              <a href="#">Supply Chain/Merchandising</a>
+              <a href="#">Customer Engagement</a>
+            </nav>--> 
+        </td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+<!-- Courses -->
+<div class="course-section">
+    <h1>Explore Courses</h1>
+</div>
+<div class="example-tabs">
+    <!--
+    The data-toggle-class attribute tells this button
+    to toggle the class `is-active` on itself and its target on click.
+
+    The data-toggle-target attribute tells to look inside the whole page
+    for a target element matching `#tabPanel_1_RZJA4` selector.
+
+    The data-toggle-radio-group attribute tells that this button
+    is a part of the `tabsGroup_VNhKR` group: only one of them can be active at a time.
+    Since it's a radio group, this group will always keep one of its triggers active.
+
+    The data-toggle-is-active attribute on the first button tells that
+    this one is active by default.
+    -->
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_1"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-toggle-is-active
+        data-value="all"
+        class="course-btn-select"
+        id="all-courses">
+        All
+    </button>    
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_2"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-value="Store Systems"
+        class="course-btn-select course-select">
+        Store Systems
+    </button>
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_3"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-value="Analytics"
+        class="course-btn-select course-select">
+        Analytics
+    </button>
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_4"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-value="Digital Commerce"
+        class="course-btn-select course-select">
+        Digital Commerce
+    </button>
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_5"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-value="Supply Chain/Merchandising"
+        class="course-btn-select course-select">
+        Supply Chain/Merchandising
+    </button>
+    <button
+        type="button"
+        data-toggle-class
+        data-toggle-target="#tabPanel_6"
+        data-toggle-radio-group="tabsGroup_VNhKR"
+        data-value="Customer Engagement"
+        class="course-btn-select course-select">
+        Customer Engagement
+    </button>
+</div>
+<!--{% if courses.featured.any? %}
+      <div class="np-homepage-featured-courses row">
+        {% for course in courses.featured %}
+          <div class="col-xs-12 col-md-6 col-lg-4 np-stretch-content">
+            {% include "cards_course" with course %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="np-homepage-featured-empty">
+        <div class="np-zero-state-text">
+          {% t .empty, key: current_school.course_vocabulary %}
+        </div>
+        <img
+          class="np-zero-state-courses"
+          alt="{% t .empty, key: current_school.course_vocabulary %}"
+        />
+      </div>
+    {% endif %}-->
+{% if courses.in_catalog.any? %}
+  <div id="courses" class="np-homepage-featured-courses row">
+    {% for course in courses.in_catalog %}
+      <div id='{{course.created_at | date: "%s" }}' class="sortable np-stretch-content">
+        {% include "cards_course" with course %}
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  {% capture message %}
+    {% t shared.zero_state.courses.catalog,
+      key: current_school.course_vocabulary
+    %}
+  {% endcapture %}
+  {% include "courses_zero_state", message: message %}
+{% endif %}
+<!-- Courses -->
+<!-- Teachers -->
+<!--<div class="slideshow-container">
+    <div class="mySlides fade">
+       <div class="carousel-content">
+          <h2>Skilled Industry Teachers</h2>
+          <div class="carousel-inner-wrap">
+            <table class="profile-table" width="100%" border="0" cellspacing="50" cellpadding="0">
+            <tbody>
+              <tr>
+                <td valign="top"><img class="profile-slider-img fade" src="https://assets1.csnews.com/files/2021-07/Simone-geary.JPG" alt="Simone Geary" loading="lazy"></td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Simone Geary</h4>
+                  <p>Senior manager, Goodmarket Company</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="profile-table" width="100%" border="0" cellspacing="50" cellpadding="0">
+            <tbody>
+              <tr>
+                <td valign="top"><img class="profile-slider-img fade" src="https://assets1.csnews.com/files/2021-07/Simone-geary.JPG" alt="Simone Geary" loading="lazy"></td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Simone Geary</h4>
+                  <p>Senior manager, Goodmarket Company</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="profile-table" width="100%" border="0" cellspacing="50" cellpadding="0">
+            <tbody>
+              <tr>
+                <td valign="top"><img class="profile-slider-img fade" src="https://assets1.csnews.com/files/2021-07/Simone-geary.JPG" alt="Simone Geary" loading="lazy"></td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Simone Geary</h4>
+                  <p>Senior manager, Goodmarket Company</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> 
+</div>  -->
+<!-- Teachers -->
+<!-- Mission --> 
+<div class="mission-section">
+    <img class="fade" src="https://assets1.csnews.com/files/2021-07/posv2.jpg" alt="CSN Technology Academy">
+    <h1>Our Mission</h1>
+    <p>Convenience Store News’ Technology Academy is an educational platform dedicated to advancing technological expertise in the convenience store industry.  Through a menu of videos, research articles, and live events, convenience store technology workers and leaders will achieve certified expertise in critical technology areas to make their companies more successful and better serve their customers.</p>
+    <div class="mission-btn-container">
+      {% if current_person.signed_in? %}
+      <a href="https://academy.csnews.com/app/catalog"><button class="course-btn-select is-active join-course-btn">Start a Course</button></a>
+      {% else %}
+      <a href="https://academy.csnews.com/sign_up"><button class="course-btn-select is-active join-course-btn">Join The Academy</button></a>
+      {% endif %}  
+    </div>
+</div>
+<!-- Mission --> 
+<footer class="np-footer site-footer">
+  <div class="site-footer__inner">
+      <div>
+         <section id="block-footersociallinks-2" class="block-footersociallinks-2 block block-block-content block-block-content359ac74b-02cc-4226-8605-a53176c1d18d">
+            <ul class="social-menu social-menu--">
+               <li class="social-menu__item social-menu__item--">
+                  <a class="social-menu__link social-menu__link--" href="https://www.facebook.com/pages/Convenience-Store-News-Magazine/45618009418" data-feathr-click-track="true">
+                     <svg class="social-menu__icon social-menu__icon--" aria-labelledby="title-facebook">
+                        <title id="title-facebook">facebook</title>
+                        <img class="social-menu__img fade" src="https://assets1.csnews.com/files/2021-07/facebook_0.png" alt="Facebook">
+                     </svg>
+                  </a>
+               </li>
+               <li class="social-menu__item social-menu__item--">
+                  <a class="social-menu__link social-menu__link--" href="https://twitter.com/CSNewsOnline" data-feathr-click-track="true">
+                     <svg class="social-menu__icon social-menu__icon--" aria-labelledby="title-twitter">
+                        <title id="title-twitter">twitter</title>
+                        <img class="social-menu__img fade" src="https://assets1.csnews.com/files/2021-07/twitter_0.png" alt="Twitter">
+                     </svg>
+                  </a>
+               </li>
+               <li class="social-menu__item social-menu__item--">
+                  <a class="social-menu__link social-menu__link--" href="https://www.linkedin.com/company/convenience-store-news" data-feathr-click-track="true">
+                     <svg class="social-menu__icon social-menu__icon--" aria-labelledby="title-linkedin">
+                        <title id="title-linkedin">linkedin</title>
+                        <img class="social-menu__img fade" src="https://assets1.csnews.com/files/2021-07/linkedin_0.png" alt="LinkedIn">
+                     </svg>
+                  </a>
+               </li>
+               <li class="social-menu__item social-menu__item--">
+                  <a class="social-menu__link social-menu__link--" href="http://www.youtube.com/user/stagnitomedia" data-feathr-click-track="true">
+                     <svg class="social-menu__icon social-menu__icon--" aria-labelledby="title-youtube">
+                        <title id="title-youtube">youtube</title>
+                        <img class="social-menu__img fade" src="https://assets1.csnews.com/files/2021-07/youtube_0.png" alt="YouTube">
+                     </svg>
+                  </a>
+               </li>
+            </ul>
+         </section>
+         <nav role="navigation" aria-labelledby="block-footer-2-menu" id="block-footer-2" class="block-footer-2">
+            <ul id="block-footer-2" class="footer-menu block-footer-2">     
+               <li class="footer-menu__item">
+                  <a href="mailto:academy@csnews.com?subject=CSNews Technology Acamademy Inquiry" class="footer-menu__link" target="_blank" data-drupal-link-system-path="contact-us" data-feathr-click-track="true">Contact</a>
+               </li>
+               <li class="footer-menu__item">
+                  <a href="http://www.ensembleiq.com/privacy" class="footer-menu__link" target="_blank" title="Privacy Policy" data-feathr-click-track="true">Privacy Policy</a>
+               </li>
+               <li class="footer-menu__item">
+                  <a href="http://www.ensembleiq.com/terms" class="footer-menu__link" target="_blank" title="Terms of Service" data-feathr-click-track="true">Terms of Service</a>
+               </li>
+            </ul>
+         </nav>
+      </div>
+      <div class="site-footer__logos">
+         <section class="logo-grid__section logo-grid__section--">
+            <ul class="logo-grid logo-grid--default">
+               <li class="logo-grid__item logo-grid__item--">
+                  <a class="link link--" target="_blank" href="https://ensembleiq.com" data-feathr-click-track="true">
+                  <img class="image image-- b-lazy fade" src="https://assets1.csnews.com/files/styles/footer_logo/s3/2021-03/EnsembleIQ-Min-for-web.jpg?itok=VIDpmQlU" alt="EnsembleIQ Logo">
+                  </a>
+               </li>
+               <li class="logo-grid__item logo-grid__item--">
+                  <a class="link link--" target="_blank" href="https://csnews.com/" data-feathr-click-track="true">
+                  <img class="image image-- b-lazy fade" src="https://assets1.csnews.com/files/styles/footer_logo/s3/2021-03/CSN_Logo_footer.png?itok=FriMzU9T" alt="CSN Logo">
+                  </a>
+               </li>
+            </ul>
+         </section>
+      </div>
+   </div>
+   <div class="site-footer__copyright">
+      © 2021 EnsembleIQ, All Rights Reserved
+   </div>   
+</footer>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<!-- Course Sorting -->
+<script>
+  const main = document.querySelector('#courses');
+  const divs = [...main.children];
+  divs.sort((a, b) => a.id - b.id);
+  divs.forEach(div => main.appendChild(div));
+</script>
+<!-- Carousel -->
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 10000); // Change image every 10 seconds
+}
+</script>
+<!-- Hero Fade In -->
+<script>
+    $(".hero-fade").hide(0).delay(500).fadeIn(3000)
+</script>
+<!-- Course Filtering -->
+<script>
+  $(document).ready(function(){  
+    $('.course-select').click(function(){
+      var catId = $(this).data('value');
+      //use attribute selector to find the items to be shown
+      var $targets = $('.np-card[data-course="' + catId + '"]').show('slow');
+      //hide all the other items
+      if($('.np-card').children(':visible').length == 0) {
+        $('.course-error').show('slow');
+        $('.np-card').not($targets).hide('slow');
+      } else {
+        $('.np-card').not($targets).hide('slow'); 
+        $('.course-error').hide('slow');
+      }
+    });  
+    $('#all-courses').click(function(){
+      $('.np-card').show('slow');
+      $('.course-error').hide('slow');
+    });  
+  });
+  </script>

@@ -1,0 +1,19 @@
+<div class="np-card np-search-result">
+  <div class="np-card-container">
+    <div class="np-card-content">
+      <img
+        class="np-search-result-image"
+        alt="{{ result.name }}"
+        src="{{ result.image_url }}"
+      />
+      <div class="np-search-result-content">
+        <div>
+          <a class="np-search-result-title" href="{{ result.path }}">
+            {{ result.name }}
+          </a>
+        </div>
+        <div class="np-search-result-snippet">{{ result.sanitized_description }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+{% if learning_path.enrolled? and course.unlocked? %}
+  <div class="np-learning-path-outline-bar np-hidden-mobile"></div>
+  <a
+    class="np-learning-path-outline-item np-card-container"
+    href="{% route learning_path_course, learning_path_id: learning_path.id, id: course.id %}"
+  >
+    <div class="np-card-content np-card-padding">
+      <img
+        src="{{ item.image }}"
+        alt="{{ course.name }}"
+        class="np-learning-path-outline-course-image"
+      >
+      <div class="np-learning-path-outline-content">
+        <div class="np-learning-path-outline-name np-top-title">
+          {{ course.name }}
+        </div>
+        {% if course.instructors %}
+          <div class="np-learning-path-outline-caption">
+            {{ course.instructors }}
+          </div>
+        {% endif %}
+        <div class="np-learning-path-outline-progress
+          {% if course.completed? %} np-color-success {% else %} np-button-color {% endif %}
+        ">
+          {% t shared.progress, count: course.progress %}
+        </div>
+      </div>
+      <i class="fas fa-chevron-right np-learning-path-outline-icon"></i>
+      {% if course.optional? %}
+        <div class="np-optional-ribbon">
+          {% t shared.optional %}
+        </div>
+      {% endif %}
+    </div>
+  </a>
+{% else %}
+  <div class="np-learning-path-outline-item np-learning-path-outline-inactive-item np-card-container">
+    <div class="np-card-content np-card-padding">
+      <img
+        src="{{ item.image }}"
+        alt="{{ course.name }}"
+        class="np-learning-path-outline-course-image"
+      >
+      <div class="np-learning-path-outline-content">
+        <div class="np-learning-path-outline-name np-top-title">
+          {{ course.name }}
+        </div>
+      </div>
+      {% if course.optional? %}
+        <div class="np-optional-ribbon">
+          {% t shared.optional %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

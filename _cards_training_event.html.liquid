@@ -1,0 +1,45 @@
+<div class="np-card">
+  <div class="np-card-container">
+    <div class="np-card-content-training-event">
+      <h3 class="np-card-content-title">
+        {{ training_event.title }}
+      </h3>
+      <div class="np-card-content-subtitle">
+        {% t shared.event_types, key: training_event.event_type %}
+      </div>
+      <div class="np-card-training-session">
+        <span class="np-card-content-label">
+          {% t .next_session %}
+        </span>
+        <div class="np-card-training-session-date">
+          <div class="np-button-background-color np-card-training-session-date-bar"></div>
+          <div class="np-card-training-session-date-day">
+            {{ training_event.sessions.first.day }}
+          </div>
+          <div>
+            <div class="np-card-training-session-date-month">
+              {{ training_event.sessions.first.month }}
+            </div>
+            <div class="np-card-training-session-date-year">
+              {{ training_event.sessions.first.year }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="np-card-content np-card-content-vertical np-card-padding">
+      <div class="np-card-training-sessions">
+        <i class="np-card-training-sessions-icon far fa-calendar-star"></i>
+        <span class="np-card-training-sessions-label">
+          {% t .sessions, count: training_event.sessions.size %}
+        </span>
+        <a
+          class="np-button np-button-wide"
+          href="{% route training_session, id: training_event.sessions.first.id %}"
+        >
+          {% t shared.view %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

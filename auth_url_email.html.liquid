@@ -1,0 +1,59 @@
+<main class="np-box-container np-open-access">
+  <div class="np-box">
+    {% include "header_minimal" %}
+    <div class="np-box-content-container">
+      <form class="np-form np-box-content" action="{{ form.url }}" method="get" novalidate>
+        {% form_authenticity_token %}
+        <div class="np-form-headline">
+          {% t shared.welcome_to_school, school_name: current_school.name %}
+        </div>
+        <div class="np-form-subheadline">
+          {% t .headline, key: current_school.course_vocabulary %}
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_first_name">
+            {% t shared.first_name %}
+          </label>
+          <input
+            class="np-input"
+            autofocus="autofocus"
+            type="text"
+            name="first_name"
+            id="learner_first_name"
+            value="{{ form.first_name }}"
+          />
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_last_name">
+            {% t shared.last_name %}
+          </label>
+          <input
+            class="np-input"
+            type="text"
+            name="last_name"
+            id="learner_last_name"
+            value="{{ form.last_name }}"
+          />
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_email">
+            {% t shared.email_address %}
+          </label>
+          <input
+            class="np-input"
+            type="text"
+            name="email"
+            id="learner_email"
+            value="{{ form.email }}"
+          />
+        </div>
+        <input
+          type="submit"
+          name="commit"
+          value="{% t shared.enter %}"
+          class="np-button np-button-big np-form-action"
+        />
+      </form>
+    </div>
+  </div>
+</main>

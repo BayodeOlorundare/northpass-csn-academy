@@ -1,0 +1,22 @@
+{% if params.q %}
+  <input type="hidden" name="q" value="{{ params.q }}">
+{% endif %}
+
+<label class="dropdown-label" for="filter[category_uuid][in][]">
+  {{ label }}
+</label>
+
+<select
+  class="np-filter-select"
+  multiple
+  name="filter[{{ key }}][in][]"
+>
+  {% for filter in filters %}
+    <option
+      value="{{ filter.value }}"
+      {% if filter.selected? %} selected="selected" {% endif %}
+    >
+      {{ filter.name }}
+    </option>
+  {% endfor %}
+</select>

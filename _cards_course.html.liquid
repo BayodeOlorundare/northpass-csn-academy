@@ -1,0 +1,37 @@
+{% for category in course.categories %}
+<div class="col-xs-12 col-md-6 col-lg-4 np-card" data-course="{{ category.name }}">
+  <div class="np-card-container">
+    {% if course.ribbon %}
+      <div class="np-card-ribbon">
+        {{ course.ribbon }}
+      </div>
+    {% endif %}
+    <img
+      class="np-card-image"
+      alt="{{ course.name }}"
+      src="{{ course.image_url }}"
+    >
+    <div class="np-card-content np-card-content-vertical np-card-padding">
+      <h3 class="np-card-content-title">
+        {{ course.name }}
+      </h3>
+      <p class="np-card-text">
+        {{ course.short_description }}
+      </p>
+      <div class="np-card-content-subtitle">
+        {{ course.instructor_names }}
+      </div>
+      <div class="np-card-content-footer">
+        <div class="np-card-content-progress np-button-color">
+          {% t shared.progress, count: course.progress %}
+        </div>
+        {% unless course.properties.coming_soon %}
+          <a class="np-button np-button-wide" href="{% route course, id: course.id %}">
+            {% t shared.view %}
+          </a>
+        {% endunless %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}

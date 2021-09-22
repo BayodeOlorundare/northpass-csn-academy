@@ -1,0 +1,40 @@
+<div class="np-course-outline">
+  <div class="np-text-title np-course-outline-title">
+    {% t .header, key: current_school.course_vocabulary %}
+  </div>
+  <div class="np-course-outline-content">
+    <ol class="np-course-outline-content-section">
+      {% for section in course.sections %}
+        <li class="np-course-outline-content-section-list">
+          <div class="np-course-outline-content-section-name np-text-title-bold np-text-title-bold">
+            {{ section.name }}
+          </div>
+          <ol class="np-course-outline-content-activity">
+            {% for activity in section.activities %}
+
+              <li class="np-course-outline-content-activity-list">
+                {% if activity.completed? %}
+                  <i class="fas fa-circle np-course-outline-content-activity-icon np-button-color"></i>
+                  {% if activity.locked? %}
+                    {% include "course_activity_locked" %}
+                  {% else %}
+                    {% include "course_activity_unlocked", class: "np-course-outline-content-activity-link-completed" %}
+                  {% endif %}
+                  <div class="np-button-background-color np-course-outline-content-activity-list-bar"></div>
+                {% else %}
+                  <i class="far fa-circle np-course-outline-content-activity-icon"></i>
+                  {% if activity.locked? %}
+                    {% include "course_activity_locked" %}
+                  {% else %}
+                    {% include "course_activity_unlocked", class: "np-course-outline-content-activity-link" %}
+                  {% endif %}
+                  <div class="np-course-outline-content-activity-list-bar"></div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ol>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</div>

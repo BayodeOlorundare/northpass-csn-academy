@@ -1,0 +1,22 @@
+<div class="np-card-container-training-session">
+  <div class="np-card-spacing-large">
+    {% include "training_session_header" %}
+  </div>
+  {% include "training_session_details" %}
+  <div class="np-card-padding-large">
+    {% include "training_session_cta" %}
+  </div>
+</div>
+
+<div class="np-card-container np-card-padding np-card-spacing">
+  {% include "training_session_description" %}
+</div>
+
+{% if training_event.sessions.size > 1 %}
+  <div class="np-card-spacing">
+    <div class="np-training-session-sessions-title">
+      {% t shared.more_sessions %}
+    </div>
+    {% include "training_session_more_sessions" %}
+  </div>
+{% endif %}

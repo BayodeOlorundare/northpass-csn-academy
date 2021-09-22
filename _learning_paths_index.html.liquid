@@ -1,0 +1,15 @@
+<div class="np-learning-paths-resources">
+  {% if items.any? %}
+    {% for learning_path in items %}
+      {% include "cards_learning_path" with learning_path %}
+    {% endfor %}
+  {% else %}
+    <div class="np-learning-paths-resources-container">
+      <div class="np-zero-state-text">      
+        {% t .empty %}
+      </div>
+      <img class="np-zero-state-learning-paths" alt="{% t .empty %}" />
+      <a href="https://academy.csnews.com/app/catalog"><button class="course-btn-select is-active join-course-btn">Start a Course</button></a>
+    </div>
+  {% endif %}
+</div>

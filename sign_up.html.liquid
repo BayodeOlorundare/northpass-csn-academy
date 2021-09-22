@@ -1,0 +1,124 @@
+<main class="np-main np-box-container">
+  <div class="np-box">
+    {% include "header_minimal" %}
+    <div class="np-box-content-container">
+      <form class="np-form np-box-content" action="{% route sign_up %}" method="post" novalidate>
+        <div class="np-form-title"> {% t .create_account %} </div>
+        {% form_authenticity_token %}
+        <div class="np-form-flex-desktop">
+          <div class="np-form-field">
+            <label class="np-input-label" for="learner_first_name">
+              {% t shared.first_name %}
+            </label>
+            <input
+              class="np-input"
+              autofocus="autofocus"
+              type="text"
+              name="learner[first_name]"
+              id="learner_first_name"
+            >
+          </div>
+          <div class="np-form-field">
+            <label class="np-input-label" for="learner_last_name">
+              {% t shared.last_name %}
+            </label>
+            <input
+              class="np-input"
+              type="text"
+              name="learner[last_name]"
+              id="learner_last_name"
+            >
+          </div>
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_email">
+            {% t shared.email_address %}
+          </label>
+          <input
+            class="np-input"
+            autofocus="autofocus"
+            type="email"
+            name="learner[email]"
+            id="learner_email"
+          >
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="job_title">
+            Job Title
+          </label>
+          <input
+            class="np-input"
+            autofocus="autofocus"
+            type="text"
+            name="learner[job_title]"
+            id="learner_job_title"
+          >
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_company">
+            Company
+          </label>
+          <input
+            class="np-input"
+            autofocus="autofocus"
+            type="text"
+            name="learner[company]"
+            id="learner_company"
+          >
+        </div>
+        <div class="np-form-field">
+          <label class="np-input-label" for="learner_password">
+            {% t shared.password %}
+          </label>
+          <input
+            class="np-input"
+            type="password"
+            name="learner[password]"
+            id="learner_password"
+          >
+        </div>
+        <button onclick="sendData()" type="submit" class="np-button np-button-big np-button-large-font np-form-action">
+          {% t shared.sign_up %}
+        </button>
+        <span class="np-form-terms">
+          {% t .terms %}
+          <a
+            class="np-form-link np-button-color"
+            target="_blank"
+            href="{{ current_school.terms_of_service_url }}"
+          >
+            {% t .terms_link %}
+          </a>
+        </span>
+        <span class="np-form-terms np-forms-login">
+          <a href="{% route login %}"><p class="header-nav-item">Log in</p></a>
+        </span>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<script>
+function sendData() {
+  var email = $("#learner_email").val();
+  var job = $("#learner_job_title").val();
+  var company = $("#learner_company").val();
+  var data = {
+            email : email,
+            job_title : job,
+            company : company
+        };
+  $.ajax({
+        type : 'POST',
+        url : 'https://hooks.zapier.com/hooks/catch/10670937/but6ie8/',  
+        data: JSON.stringify(data),
+        success:function (data) {
+            console.log(data)
+        },
+        error: function(xhr, status, error) {
+            console.log(error)
+      }
+    });
+}
+</script>

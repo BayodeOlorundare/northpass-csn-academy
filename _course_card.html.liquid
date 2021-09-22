@@ -1,0 +1,25 @@
+<div class="np-card">
+  <div class="np-card-container">
+    <img
+      class="np-card-image"
+      alt="{{ course.name }}"
+      src="{{ course.image_url }}"
+    >
+    <div class="np-card-content np-card-content-vertical np-card-padding">
+      <h3 class="np-card-content-title">
+        {{ course.name }}
+      </h3>
+      <div class="np-card-content-subtitle">
+        {{ course.instructor_names }}
+      </div>
+      <div class="np-card-content-footer">
+        <div class="np-card-content-progress np-button-color">
+          {% t shared.progress, count: course.progress %}
+        </div>
+        <a class="np-button np-button-wide" href="{% route course, id: course.id %}">
+          {% t shared.view %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

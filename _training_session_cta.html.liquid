@@ -1,0 +1,53 @@
+{% if training_session.approved? %}
+  <div class="np-training-session-cta-note">
+    <i class="far fa-check np-training-session-icon"></i>
+    {% t .registered %}
+  </div>
+{% elsif training_session.pending? %}
+  <div class="np-training-session-cta-note np-training-session-cta-note-error">
+    {% t .pending %}
+  </div>
+{% elsif training_session.denied? %}
+  <div class="np-training-session-cta-note np-training-session-cta-note-error">
+    {% t .denied %}
+  </div>
+{% elsif training_session.too_late? %}
+  <div class="np-training-session-cta-note np-training-session-cta-note-error">
+    {% t .too_late %}
+  </div>
+{% elsif training_session.no_seats? %}
+  <div class="np-training-session-cta-note np-training-session-cta-note-error">
+    {% t .no_seats %}
+  </div>
+{% endif %}
+<div class="np-training-session-cta">
+  <div class="np-training-session-cta-buttons">
+    <form
+      action="{% route training_session_registration, id: training_session.id %}"
+      method="post"
+    >
+      {% form_authenticity_token %}
+
+      {% if training_session.internal? and training_session.approved? %}
+        {% if features.training_events_google_calendar? %}
+          {% include "training_session_calendars" %}
+          <button type="submit" class="np-top-button np-button np-button-big np-button-secondary">
+            {% t .unregister %}
+          </button>
+        {% else %}
+          <button type="submit" class="np-top-button np-button-font-color np-button np-button-big">
+            {% t .unregister %}
+          </button>
+        {% endif %}
+
+        <input type="hidden" name="_method" value="delete" />
+      {% endif %}
+
+      {% if training_session.not_registered? %}
+        <button type="submit" class="np-top-button np-button np-button-big">
+          {% t .register %}
+        </button>
+      {% endif %}
+    </form>
+  </div>
+</div>

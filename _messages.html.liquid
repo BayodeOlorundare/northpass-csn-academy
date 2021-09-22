@@ -1,0 +1,19 @@
+{% if messages.alert.size > 0 %}
+  <div class="np-alert np-alert-error">
+    <div class="np-alert-wrapper">
+      {% for message in messages.alert %}
+        <div>{{ message }}</div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% if messages.notice.size > 0 %}
+  <div class="np-alert np-alert-success">
+    <div class="np-alert-wrapper">
+      {% for message in messages.notice %}
+        <div>{{ message }}</div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

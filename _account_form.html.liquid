@@ -1,0 +1,146 @@
+<div class="np-resource-title">
+  {% t .header %}
+</div>
+<div class="np-form-field {% if form.errors contains 'email' %}np-account-form-field-error{% endif %}">
+  <label class="np-input-label" for="{{version}}_learner_email">{% t shared.email %} *</label>
+  <input
+    {% if form.options.invite? %} disabled {% endif %}
+    autofocus="autofocus"
+    class="np-input current-email"
+    id="{{version}}_learner_email"
+    name="learner[email]"
+    type="email"
+    value="{{ form.email }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'first_name' %}np-account-form-field-error{% endif %}">
+  <label class="np-input-label" for="{{version}}_learner_first_name">
+    {% t shared.first_name %} *
+  </label>
+  <input
+    class="np-input first-name"
+    id="{{version}}_learner_first_name"
+    name="learner[first_name]"
+    value="{{ form.first_name }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'last_name' %}np-account-form-field-error{% endif %}">
+  <label class="np-input-label" for="{{version}}_learner_last_name">
+    {% t shared.last_name %} *
+  </label>
+  <input
+    class="np-input last-name"
+    id="{{version}}_learner_last_name"
+    name="learner[last_name]"
+    value="{{ form.last_name }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'display_name' %}np-account-form-field-error{% endif %}">
+  <label class="np-input-label" for="{{version}}_learner_display_name">
+    {% t .display_name %}
+  </label>
+  <input
+    class="np-input"
+    id="{{version}}_learner_display_name"
+    name="learner[display_name]"
+    value="{{ form.display_name }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'job_title' %}np-account-form-field-error{% endif %}"" >
+  <label class="np-input-label">
+    Job Title
+  </label>
+  <input
+    class="np-input"
+    id="learner_job_title"
+    name="learner[job_title]"
+    type="text"
+    value="{{ form.job_title }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'company' %}np-account-form-field-error{% endif %}"">
+  <label class="np-input-label">
+    Company
+  </label>
+  <input
+    class="np-input"
+    id="learner_company"
+    name="learner[company]"
+    type="text"
+    value="{{ form.company }}"
+  />
+</div>
+<div class="np-form-field {% if form.errors contains 'password' %}np-account-form-field-error{% endif %}">
+  <label class="np-input-label" for="{{version}}_learner_password">
+    {% t shared.password %} *
+  </label>
+  <input
+    class="np-input"
+    id="{{version}}_learner_password"
+    name="learner[password]"
+    type="password"
+  />
+</div>
+
+{% unless form.options.invite?  %}
+  <div class="np-form-field {% if form.errors contains 'password_confirmation' %}np-account-form-field-error{% endif %}">
+    <label class="np-input-label" for="{{version}}_learner_password_confirmation">
+      {% t .confirm_password %} *
+    </label>
+    <input
+      class="np-input"
+      id="{{version}}_learner_password_confirmation"
+      name="learner[password_confirmation]"
+      type="password"
+    />
+  </div>
+{% endunless %}
+
+{% if form.options.invite?  %}
+  <div class="np-form-field terms-of-service{% if form.errors contains 'terms_of_service_accepted' %}np-account-form-field-error{% endif %}">
+    <input
+      id="{{version}}_learner_terms_of_service"
+      name="learner[terms_of_service_accepted]"
+      type="checkbox"
+    />
+    <div class="label">
+      {% t .terms_of_service %}
+    </div>
+  </div>
+
+  <input
+    id="{{version}}_invite_token"
+    name="learner[token]"
+    value="{{ form.invite_token }}"
+    type="hidden"
+  />
+{% endif %}
+
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<script>
+function sendData() {
+  var email = $(".current-email").val();
+  var first = $(".first-name").val();
+  var last = $(".last-name").val();
+  var job = $("#learner_job_title").val();
+  var company = $("#learner_company").val();
+  var data = {
+            email : email,
+            first : first,
+            last : last,
+            job : job,
+            company : company
+        };
+  $.ajax({
+        type : 'POST',
+        url : 'https://hooks.zapier.com/hooks/catch/10670937/bu56uuc/',  
+        data: JSON.stringify(data),
+        success:function (data) {
+            console.log(data)
+        },
+        error: function(xhr, status, error) {
+            console.log(error)
+      }
+    });
+}
+</script>

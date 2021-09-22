@@ -1,0 +1,53 @@
+{% if learning_path.enrolled? and training_session.unlocked? %}
+  <div class="np-learning-path-outline-bar np-hidden-mobile"></div>
+  <a
+    class="np-learning-path-outline-item np-card-container"
+    href="{% route training_session, id: training_session.id %}"
+  >
+    <div class="np-card-content np-card-padding">
+      <div class="np-events-content-date np-button-background-color">
+        <div class="np-events-content-month">
+          {{ training_session.month }}
+        </div>
+        <div class="np-events-content-day">
+          {{ training_session.day }}
+        </div>
+      </div>
+      <div class="np-learning-path-outline-content">
+        <div class="np-learning-path-outline-name np-top-title">{{ training_session.name }}</div>
+        <div class="np-learning-path-outline-caption">{{ training_session.instructors }}</div>
+        <div class="np-events-content-time np-learning-path-outline-time np-button-color">
+          {{ training_session.time }} {{ training_session.time_zone }}
+        </div>
+      </div>
+      <i class="fas fa-chevron-right np-learning-path-outline-icon"></i>
+      {% if training_session.optional? %}
+        <div class="np-optional-ribbon">
+          {% t shared.optional %}
+        </div>
+      {% endif %}
+    </div>
+  </a>
+{% else %}
+  <div class="np-learning-path-outline-item np-card-container np-learning-path-outline-inactive-item">
+    <div class="np-card-content np-card-padding">
+      <div class="np-events-content-date np-button-background-color">
+        <div class="np-events-content-month">
+          {{ training_session.month }}
+        </div>
+        <div class="np-events-content-day">
+          {{ training_session.day }}
+        </div>
+      </div>
+      <div class="np-learning-path-outline-content">
+        <div class="np-learning-path-outline-name np-top-title">{{ training_session.name }}</div>
+        <div class="np-learning-path-outline-caption">{{ training_session.caption }}</div>
+      </div>
+      {% if training_session.optional? %}
+        <div class="np-optional-ribbon">
+          {% t shared.optional %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

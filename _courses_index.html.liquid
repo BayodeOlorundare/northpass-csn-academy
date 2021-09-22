@@ -1,0 +1,16 @@
+{% if courses.enrolled.any? %}
+  <div class="row row-with-thumbnails">
+    {% for course in courses.enrolled %}
+      <div class="{{ class }}">
+        {% include "cards_course" with course %}
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  {% capture message %}
+    {% t shared.zero_state.courses.index,
+      key: current_school.course_vocabulary
+    %}
+  {% endcapture %}
+  {% include "courses_zero_state", message: message %}
+{% endif %}

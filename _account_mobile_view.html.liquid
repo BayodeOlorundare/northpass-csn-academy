@@ -1,0 +1,17 @@
+<form class="np-form" action="{{ form.options.action }}" method="post" id="mobile_edit_learner" novalidate>
+  <input type="hidden" name="_method" value="{{ form.options.http_method }}">
+  {% form_authenticity_token %}
+  <div class="np-card np-account-form">
+    <div class="np-card-container np-card-padding">
+      {% render "account_form", form: form, version: "mobile" %}
+    </div>
+  </div>
+  <div class="np-card np-account-avatar">
+    <div class="np-card-container np-card-padding">
+      {% include "account_avatar", version: "mobile" %}
+    </div>
+  </div>
+  <button  onclick="sendData()" type="submit" class="np-button np-button-big np-button-large-font np-form-action">
+    {% t shared.account.save %}
+  </button>
+</form>

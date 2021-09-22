@@ -1,0 +1,42 @@
+<div class="np-card-container">
+  <div class="np-resource-header np-course-header np-card-padding-large">
+    {% include "course_header" %}
+  </div>
+  <div class="np-divider"></div>
+  <div class="row np-course-content np-card-padding-dynamic">
+    <div class="col-xs-12 col-sm-6">
+      <img
+        src="{{ course.image_url }}"
+        class="np-top-image np-top-image-spacing"
+        alt="{{ course.name }}"
+      />
+      {% include "course_description" %}
+
+      {% if course.categories.any? %}
+        <div class="np-card-content-divider">
+          {% include "course_categories" %}
+        </div>
+      {% endif %}
+
+      {% if course.instructors.any? %}
+        <div class="np-card-content-divider">
+          {% include "course_instructors" %}
+        </div>
+      {% endif %}
+
+      {% if course.events.any? %}
+        <div class="np-card-content-divider">
+          {% include "course_events" %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="np-grid-spacing col-xs-12 col-sm-6">
+      <div class="np-top-cta">
+        {% include "course_progress_and_cta" %}
+      </div>
+      {% if current_person.signed_in? %}
+        {% include "course_outline" %}
+      {% endif %}
+    </div>
+  </div>
+</div>

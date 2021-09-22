@@ -1,0 +1,17 @@
+{% if current_session.id != session.id %}
+  <a
+    class="np-training-session-tile"
+    href="{% route training_session, id: session.id %}"
+  >
+    <i class="far fa-calendar-star np-training-session-tile-icon"></i>
+    <div>
+      <div class="np-training-session-tile-date">
+        {{ session.month }} {{ session.day }}, {{ session.year }}
+      </div>
+      <div class="np-training-session-tile-time">
+        {{ session.time_period }} {{ session.time_zone }}
+      </div>
+    </div>
+    <i class="fas fa-chevron-right np-training-session-tile-chevron"></i>
+  </a>
+{% endif %}

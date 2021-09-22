@@ -1,0 +1,37 @@
+<div class="np-resource-header np-card-padding-large">
+  <div class="np-top-vocabulary np-text-title">
+    {% t shared.learning_path.title %}
+    <i class="far fa-road np-button-color np-learning-path-icon"></i>
+  </div>
+  <div class="np-top-title">
+    {{ learning_path.name }}
+  </div>
+  <img
+    src="{{ learning_path.image_url }}"
+    class="np-top-image"
+    alt="{{ learning_path.name }}"
+  />
+  <div class="np-top-cta">
+    {% include "learning_path_progress_and_cta" %}
+  </div>
+</div>
+
+{% if learning_path.in_progress? %}
+  {% include "learning_path_outline" %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "learning_path_description" %}
+  </div>
+{% else %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "learning_path_description" %}
+  </div>
+  <div class="np-card-spacing">
+    {% include "learning_path_outline" %}
+  </div>
+{% endif %}
+
+{% if learning_path.instructors.any? %}
+  <div class="np-card-container np-card-padding np-card-spacing">
+    {% include "learning_path_instructors" %}
+  </div>
+{% endif %}

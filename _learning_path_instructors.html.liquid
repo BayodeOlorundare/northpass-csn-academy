@@ -1,0 +1,26 @@
+{% if learning_path.instructors.any? %}
+  <div class="np-card-content-divider">
+    <h3 class="np-card-heading">
+      {% t shared.instructors %}
+    </h3>
+    <div class="np-content-instructors-content row">
+      {% for instructor in learning_path.instructors %}
+        <div class="np-content-instructors-content-item col-xs-12 col-lg">
+          <img
+            src="{{ instructor.avatar_url }}"
+            class="np-content-instructors-content-image"
+            alt="{{ instructor.name }}"
+          >
+          <div class="np-content-instructors-content-description">
+            <div class="np-content-instructors-content-name">
+              {{ instructor.name }}
+            </div>
+            <div class="np-content-instructors-content-info np-text-light">
+              {{ instructor.title }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

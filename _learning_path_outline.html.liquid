@@ -1,0 +1,9 @@
+<div class="np-learning-path-outline">
+  {% for item in learning_path.items %}
+    {% if item.course? %}
+      {% include "learning_path_course", course: item %}
+    {% elsif item.training_event? %}
+      {% include "learning_path_training_session", training_session: item %}
+    {% endif %}
+  {% endfor %}
+</div>

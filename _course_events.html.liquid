@@ -1,0 +1,28 @@
+<h3 class="np-card-heading">
+  {% t .header %}
+</h3>
+<div class="np-flex-column">
+  {% for event in course.events %}
+    <div class="np-course-events-content-item">
+      <div class="np-course-events-content-date np-button-background-color">
+        <div class="np-course-events-content-month">
+          {{ event.sessions.first.abbreviated_month }}
+        </div>
+        <div class="np-course-events-content-day">
+          {{ event.sessions.first.day }}
+        </div>
+      </div>
+      <div class="np-course-events-content-details">
+        <div class="np-course-events-content-name">
+          {{ event.title }}
+        </div>
+        <div class="np-course-events-content-type np-text-light">
+          {% t shared.event_types, key: event.event_type %}
+        </div>
+        <div class="np-course-events-content-time np-button-color">
+          {{ event.sessions.first.time_period }} {{ event.sessions.first.time_zone }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

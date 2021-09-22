@@ -1,0 +1,53 @@
+<div class="np-filter">
+  <div class="dropdown">
+    <button
+      class="np-button dropdown-button"
+      data-toggle-class="is-open"
+      data-toggle-escape
+      data-toggle-outside
+      data-toggle-target-next
+      type="button"
+    >
+      {% t shared.filters.filter %}
+    </button>
+
+    <div class="dropdown-menu" data-test="modal">
+      <form method="get">
+        <span class="dropdown-label">
+          {% t shared.filters.by_event_type %}
+        </span>
+        <ul class="dropdown-checkboxes">
+          {% for event_type in training_events.filters.event_types %}
+            {% capture label %}
+              {% t shared.event_types, key: event_type.value %}
+            {% endcapture %}
+            <li>
+              {% include "filter_checkbox",
+                  label: label,
+                  name: event_type.name,
+                  value: event_type.value
+                  selected: event_type.selected?
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% capture label %}{% t shared.filters.by_course %}{% endcapture %}
+        {%
+          include "filter_select",
+          filters: training_events.filters.courses,
+          key: "courses_uuid",
+          label: label
+        %}
+
+        <button
+          class="np-button dropdown-button-apply"
+          data-toggle-trigger-off
+          type="submit"
+        >
+          {% t shared.filters.apply %}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

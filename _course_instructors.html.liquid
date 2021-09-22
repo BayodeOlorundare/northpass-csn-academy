@@ -1,0 +1,22 @@
+<h3 class="np-card-heading">
+  {% t .header %}
+</h3>
+<div class="np-flex">
+  {% for instructor in course.instructors %}
+    <div class="np-content-instructors-content-item">
+      <img
+        src="{{ instructor.avatar_url }}"
+        class="np-content-instructors-content-image"
+        alt="{{ instructor.name }}"
+      />
+      <div class="np-content-instructors-content-description">
+        <div class="np-content-instructors-content-name">
+          {{ instructor.name }}
+        </div>
+        <div class="np-content-instructors-content-info np-text-light">
+          {{ instructor.title }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

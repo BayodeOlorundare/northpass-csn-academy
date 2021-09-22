@@ -1,0 +1,19 @@
+{% include "header" %}
+{% include "sub_navigation" %}
+<main class="np-main np-training-events np-subpage-container np-max-width">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10">
+      <div class="np-resource-title">
+        {% t .title %}
+      </div>
+      <div class="np-resource-subtitle">
+        {% t .subtitle %}
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2">
+      {% include "training_events_filter" %}
+    </div>
+  </div>
+  {% include "training_events_index" %}
+</main>
+{% include "footer" %}

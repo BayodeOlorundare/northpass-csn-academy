@@ -1,0 +1,23 @@
+{% include "header" %}
+{% include "course_version_outdated_alert", courses: courses.in_catalog %}
+{% include "sub_navigation" %}
+<main class="np-main np-catalog np-subpage-container np-max-width">
+  <div class="np-catalog-header-wrapper">
+    <div class="np-catalog-header">
+      <div class="np-resource-title">{{ catalog.headline }}</div>
+      <div class="np-resource-subtitle">{{ catalog.subheadline }}</div>
+    </div>
+    {% capture label %}{% t shared.filters.by_category %}{% endcapture %}
+
+    {% if courses.in_catalog.any? %}
+      {%
+        include "filter_dropdown",
+        filters: courses.filters,
+        key: "category_uuid",
+        label: label
+      %}
+    {% endif %}
+  </div>
+  {% include "courses_catalog" %}
+</main>
+{% include "footer" %}
